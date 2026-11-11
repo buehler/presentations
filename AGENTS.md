@@ -36,6 +36,9 @@ decks/<deck>/
    (audience, length, theme) instead of guessing.  
 5. While interacting with the user, if decisions about content and similar things are made, update the brief.md file to reflect the changes.
 
+## Building a deck (interactive)
+Similar to "Building a deck" above, but instead of "brief.md" there will be an interactive session with the agent. After all questions have been answered and the context is clear and given, write the brief.md file yourself.
+
 ## Rules
 
 - Start every deck from `template/index.html`.
