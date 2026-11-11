@@ -1,0 +1,8 @@
+{
+  "source": "AgentSpy (arXiv:2610.06001), Section 4.2 / Table 3: 88 task-model pairs whose three runs all pass every test",
+  "rows": [
+    { "label": "Unrelated activity", "tasks": 16, "of": 88 },
+    { "label": "Ignored skill guidance", "tasks": 15, "of": 88 },
+    { "label": "Read grading files", "tasks": 6, "of": 88 }
+  ]
+}

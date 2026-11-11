@@ -69,8 +69,4 @@ Similar to "Building a deck" above, but instead of "brief.md" there will be an i
 
 ## Verification
 
-No tests, and don't launch a browser or server. The user checks decks by hand:
-
-- open `index.html` in a browser; arrow keys navigate, `Esc` shows the overview
-- speaker notes (`S`) need a local server: `python3 -m http.server`
-- PDF: append `?print-pdf` to the URL and print to PDF
+No tests. You may verify the presentation with your internal browser and hosting tools. No need to test PDF download, only that the slides work.
