@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deck title</title>
+
+  <!-- Paths are relative to template/. In decks/<deck>/ use ../../ instead of ../ -->
+  <link rel="stylesheet" href="../vendor/reveal/dist/reset.css">
+  <link rel="stylesheet" href="../vendor/reveal/dist/reveal.css">
+  <link rel="stylesheet" href="../vendor/reveal/dist/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="../themes/base.css">
+  <link rel="stylesheet" href="../themes/hsg.css">
+  <!-- Deck-specific overrides, if the deck has them: -->
+  <!-- <link rel="stylesheet" href="theme.css"> -->
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- ============ Title ============ -->
+  <section class="title center">
+    <p class="kicker">Event or course name</p>
+    <h1>Deck title in a few words</h1>
+    <p class="lead">One sentence on what the audience should take away.</p>
+    <p class="meta">Speaker name · Venue · Date</p>
+    <aside class="notes">
+      Title slide: section.title.center. Kicker, h1, .lead, .meta.
+    </aside>
+  </section>
+
+  <!-- ============ Agenda ============ -->
+  <section>
+    <h2>Agenda</h2>
+    <ol>
+      <li>Text layouts</li>
+      <li>Data and diagrams</li>
+      <li>Code and closing</li>
+    </ol>
+    <aside class="notes">
+      Plain content slide: h2 plus a list. Slides are top-aligned by default.
+    </aside>
+  </section>
+
+  <!-- ============ Divider ============ -->
+  <section class="divider center">
+    <span class="number">01</span>
+    <h2>Text layouts</h2>
+    <aside class="notes">
+      Chapter divider: section.divider.center with a .number and an h2.
+    </aside>
+  </section>
+
+  <!-- ============ Bullets with fragments ============ -->
+  <section>
+    <p class="kicker">Bullets</p>
+    <h2>Keep each slide to one idea</h2>
+    <ul>
+      <li class="fragment">Three bullets at most, each a single line</li>
+      <li class="fragment">Reveal points one by one with <code>class="fragment"</code></li>
+      <li class="fragment">Detail belongs in the speaker notes</li>
+    </ul>
+    <aside class="notes">
+      The kicker labels the slide; the h2 states its point as a sentence.
+      Press S for the speaker view (needs a local server).
+    </aside>
+  </section>
+
+  <!-- ============ Cards in columns ============ -->
+  <section>
+    <h2>Compare options side by side</h2>
+    <div class="cols">
+      <div class="card">
+        <h3>Option A</h3>
+        <p>Short description of the first option.</p>
+      </div>
+      <div class="card">
+        <h3>Option B</h3>
+        <p>Short description of the second option.</p>
+      </div>
+      <div class="card">
+        <h3>Option C</h3>
+        <p>Short description of the third option.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      div.cols makes one equal column per child. div.card gives a tinted box.
+    </aside>
+  </section>
+
+  <!-- ============ Text + key figure ============ -->
+  <section>
+    <h2>Pair an argument with its evidence</h2>
+    <div class="cols wide-left middle">
+      <div>
+        <p>Use the wide column for the argument and the narrow one for the number that backs it.</p>
+        <p class="muted">Variants: <code>wide-left</code>, <code>wide-right</code>, <code>middle</code>.</p>
+      </div>
+      <div class="stat">
+        <strong>72%</strong>
+        <span>of the figure's label, kept short</span>
+      </div>
+    </div>
+    <aside class="notes">
+      div.cols.wide-left gives a 2:1 split; .middle centers the columns vertically.
+    </aside>
+  </section>
+
+  <!-- ============ Key figures row ============ -->
+  <section>
+    <h2>Key figures</h2>
+    <div class="cols">
+      <div class="stat"><strong>1,284</strong><span>Participants</span></div>
+      <div class="stat"><strong>36</strong><span>Countries</span></div>
+      <div class="stat"><strong>4.6</strong><span>Average rating out of 5</span></div>
+    </div>
+    <p class="source">Example data.</p>
+    <aside class="notes">
+      A row of div.stat inside div.cols. Use this instead of a chart when the
+      point is a few headline numbers.
+    </aside>
+  </section>
+
+  <!-- ============ Statement ============ -->
+  <section class="statement center">
+    <p>A statement slide carries <em>one sentence</em> and nothing else.</p>
+    <aside class="notes">
+      section.statement.center. Wrap the key phrase in em to color it.
+    </aside>
+  </section>
+
+  <!-- ============ Quote ============ -->
+  <section class="center">
+    <blockquote>
+      A quote that supports the argument, kept to two lines.
+      <cite>Name, role or source</cite>
+    </blockquote>
+    <aside class="notes">
+      blockquote with a cite inside. Only quote real sources, with attribution.
+    </aside>
+  </section>
+
+  <!-- ============ Divider ============ -->
+  <section class="divider center">
+    <span class="number">02</span>
+    <h2>Data and diagrams</h2>
+  </section>
+
+  <!-- ============ Chart.js ============ -->
+  <section>
+    <h2>Enrolment grew every year since 2021</h2>
+    <div class="chart">
+      <canvas data-chart="enrolment" role="img"
+        aria-label="Bar chart of students per year: 182 in 2021, 205 in 2022, 231 in 2023, 248 in 2024, 276 in 2025."></canvas>
+    </div>
+    <p class="source">Example data. Students enrolled per year.</p>
+    <aside class="notes">
+      Chart.js chart. The canvas names a builder in the CHARTS object at the
+      bottom of this file; data sits inline in DATA. Charts build when their
+      slide is first shown, so the animation plays on arrival.
+    </aside>
+  </section>
+
+  <!-- ============ Inline SVG diagram ============ -->
+  <section>
+    <h2>From brief to published deck</h2>
+    <svg class="diagram" viewBox="0 0 1152 230" role="img"
+      aria-label="Process: Brief, then Draft, then Review, then Publish.">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+          markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+          <path class="arrowhead" d="M0,0 L10,5 L0,10 z"/>
+        </marker>
+      </defs>
+
+      <rect class="node" x="0" y="40" width="228" height="110" rx="12"/>
+      <text x="114" y="95" text-anchor="middle" dominant-baseline="middle">Brief</text>
+      <text class="label" x="114" y="195" text-anchor="middle">brief.md + assets</text>
+
+      <line class="edge" x1="236" y1="95" x2="300" y2="95" marker-end="url(#arrow)"/>
+
+      <rect class="node" x="308" y="40" width="228" height="110" rx="12"/>
+      <text x="422" y="95" text-anchor="middle" dominant-baseline="middle">Draft</text>
+      <text class="label" x="422" y="195" text-anchor="middle">index.html</text>
+
+      <line class="edge" x1="544" y1="95" x2="608" y2="95" marker-end="url(#arrow)"/>
+
+      <rect class="node" x="616" y="40" width="228" height="110" rx="12"/>
+      <text x="730" y="95" text-anchor="middle" dominant-baseline="middle">Review</text>
+      <text class="label" x="730" y="195" text-anchor="middle">in the browser</text>
+
+      <line class="edge" x1="852" y1="95" x2="916" y2="95" marker-end="url(#arrow)"/>
+
+      <rect class="node is-accent" x="924" y="40" width="228" height="110" rx="12"/>
+      <text x="1038" y="95" text-anchor="middle" dominant-baseline="middle">Publish</text>
+      <text class="label" x="1038" y="195" text-anchor="middle">GitHub Pages</text>
+    </svg>
+    <aside class="notes">
+      Inline SVG with class="diagram". Color comes from the classes node,
+      node is-accent, edge, arrowhead and label, so it follows the theme.
+      Never set fill or stroke colors directly.
+    </aside>
+  </section>
+
+  <!-- ============ Table ============ -->
+  <section>
+    <h2>Compare in a table when there are more than three options</h2>
+    <table>
+      <thead>
+        <tr><th>Option</th><th>Effort</th><th class="num">Cost (CHF)</th><th class="num">Time (weeks)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Option A</td><td>Low</td><td class="num">12,000</td><td class="num">4</td></tr>
+        <tr><td>Option B</td><td>Medium</td><td class="num">28,500</td><td class="num">9</td></tr>
+        <tr><td>Option C</td><td>High</td><td class="num">61,000</td><td class="num">20</td></tr>
+        <tr><td>Option D</td><td>Medium</td><td class="num">33,000</td><td class="num">12</td></tr>
+      </tbody>
+    </table>
+    <p class="source">Example data.</p>
+    <aside class="notes">
+      Plain table. Put class="num" on numeric cells to right-align them.
+    </aside>
+  </section>
+
+  <!-- ============ Code ============ -->
+  <section>
+    <p class="kicker">Code</p>
+    <h2>A slide in this template</h2>
+    <pre><code class="language-html" data-trim data-line-numbers="2-3"><script type="text/template">
+<section>
+  <p class="kicker">Bullets</p>
+  <h2>Keep each slide to one idea</h2>
+  <ul>
+    <li class="fragment">Three bullets at most</li>
+  </ul>
+  <aside class="notes">Detail goes here.</aside>
+</section>
+    </script></code></pre>
+    <aside class="notes">
+      Highlight plugin. Wrap HTML in script type="text/template" so it isn't
+      parsed. data-line-numbers="2-3" highlights those lines.
+    </aside>
+  </section>
+
+  <!-- ============ Closing ============ -->
+  <section class="title center">
+    <h1>Thank you</h1>
+    <p class="lead">Questions and discussion</p>
+    <p class="meta">Speaker name · email or link</p>
+  </section>
+
+</div>
+</div>
+
+<script src="../vendor/reveal/dist/reveal.js"></script>
+<script src="../vendor/reveal/dist/plugin/notes.js"></script>
+<script src="../vendor/reveal/dist/plugin/highlight.js"></script>
+<script src="../vendor/reveal/dist/plugin/zoom.js"></script>
+<script src="../vendor/chart/chart.umd.min.js"></script>
+<script>
+  // ---- Data: copied from assets/, which stays the source of truth ----
+  const DATA = {
+    enrolment: [
+      { year: '2021', students: 182 },
+      { year: '2022', students: 205 },
+      { year: '2023', students: 231 },
+      { year: '2024', students: 248 },
+      { year: '2025', students: 276 },
+    ],
+  };
+
+  // ---- Chart setup: colors and fonts come from the theme's CSS variables ----
+  const token = (name) =>
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const isPrint = /print-pdf/i.test(window.location.search);
+
+  Chart.defaults.font.family = token('--font-sans');
+  Chart.defaults.font.size = 20;
+  Chart.defaults.color = token('--c-muted');
+  Chart.defaults.maintainAspectRatio = false;
+  if (isPrint) Chart.defaults.animation = false;
+
+  // One builder per <canvas data-chart="name">
+  const CHARTS = {
+    enrolment: () => ({
+      type: 'bar',
+      data: {
+        labels: DATA.enrolment.map((d) => d.year),
+        datasets: [{
+          label: 'Students',
+          data: DATA.enrolment.map((d) => d.students),
+          backgroundColor: token('--chart-1'),
+          borderRadius: 4,
+          borderSkipped: 'start',
+          maxBarThickness: 96,
+        }],
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, border: { color: token('--c-border') } },
+          y: {
+            beginAtZero: true,
+            grid: { color: token('--chart-grid') },
+            border: { display: false },
+            ticks: { maxTicksLimit: 5 },
+          },
+        },
+      },
+    }),
+  };
+
+  function initCharts(root) {
+    root.querySelectorAll('canvas[data-chart]').forEach((canvas) => {
+      if (Chart.getChart(canvas)) return;
+      const build = CHARTS[canvas.dataset.chart];
+      if (build) new Chart(canvas, build());
+    });
+  }
+
+  // ---- reveal.js ----
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    center: false,          // top-aligned; add class="center" to a section to center it
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    backgroundTransition: 'fade',
+    plugins: [RevealNotes, RevealHighlight, RevealZoom],
+  }).then(() => {
+    initCharts(isPrint ? document : Reveal.getCurrentSlide());
+  });
+
+  Reveal.on('slidechanged', (event) => initCharts(event.currentSlide));
+</script>
+</body>
+</html>

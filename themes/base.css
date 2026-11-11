@@ -1,0 +1,396 @@
+/*
+ * base.css: shared foundation for every deck.
+ *
+ * Load order in a deck:
+ *   reveal reset.css -> reveal.css -> themes/base.css -> themes/<theme>.css -> deck theme.css
+ *
+ * This file owns typography rules, layout classes, and neutral default tokens.
+ * Themes (themes/<name>.css) and deck themes (decks/<deck>/theme.css) should
+ * mostly override the tokens in :root, and add rules only for brand details.
+ * No reveal.js theme from vendor/reveal/dist/theme/ is loaded; this replaces it.
+ */
+
+:root {
+  /* Color tokens */
+  --c-bg: #ffffff;
+  --c-text: #1d1f23;
+  --c-muted: #5d636e;
+  --c-accent: #2a5bd7;
+  --c-accent-ink: #ffffff;      /* text on accent fills */
+  --c-surface: #f3f4f6;         /* cards, table header, code bg */
+  --c-border: #d9dce1;
+
+  /* Chart series, fixed order (validated categorical palette, light mode) */
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+  --chart-4: #eda100;
+  --chart-5: #6250d6;
+  --chart-grid: #e6e8eb;
+
+  /* Type tokens */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fs-base: 30px;              /* at the 1280x720 slide size */
+  --fw-heading: 650;
+
+  /* Spacing */
+  --gap: 40px;
+  --pad: 64px;                  /* slide inner padding */
+
+  /* Map onto reveal's own variables (controls, progress bar, selection) */
+  --r-background-color: var(--c-bg);
+  --r-main-color: var(--c-text);
+  --r-main-font: var(--font-sans);
+  --r-main-font-size: var(--fs-base);
+  --r-heading-color: var(--c-text);
+  --r-heading-font: var(--font-heading);
+  --r-link-color: var(--c-accent);
+  --r-link-color-hover: var(--c-accent);
+  --r-selection-background-color: var(--c-accent);
+  --r-selection-color: var(--c-accent-ink);
+  --r-code-font: var(--font-mono);
+}
+
+/* ---------- Base typography ---------- */
+
+.reveal-viewport {
+  background-color: var(--c-bg);
+}
+
+.reveal {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  color: var(--c-text);
+}
+
+.reveal ::selection {
+  color: var(--c-accent-ink);
+  background: var(--c-accent);
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides section {
+  box-sizing: border-box;
+  padding: var(--pad);
+  line-height: 1.35;
+}
+
+.reveal .slides section.stack {
+  padding: 0;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  margin: 0 0 0.6em;
+  font-family: var(--font-heading);
+  font-weight: var(--fw-heading);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--c-text);
+  text-wrap: balance;
+}
+
+.reveal h1 { font-size: 2.4em; }
+.reveal h2 { font-size: 1.6em; }
+.reveal h3 { font-size: 1.15em; }
+.reveal h4 { font-size: 1em; }
+
+.reveal p {
+  margin: 0 0 0.8em;
+  text-wrap: pretty;
+}
+
+.reveal ul,
+.reveal ol {
+  display: block;
+  margin: 0 0 0.8em 1.1em;
+  padding: 0;
+}
+
+.reveal li { margin: 0.3em 0; }
+.reveal li::marker { color: var(--c-accent); }
+.reveal ul ul, .reveal ol ol, .reveal ul ol, .reveal ol ul {
+  margin: 0.2em 0 0 1.1em;
+  font-size: 0.85em;
+}
+
+.reveal strong { font-weight: 700; }
+
+.reveal a {
+  color: var(--c-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.reveal img,
+.reveal svg,
+.reveal video {
+  max-width: 100%;
+  margin: 0;
+}
+
+.reveal code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.reveal pre {
+  margin: 0 0 0.8em;
+  font-size: 0.7em;
+  line-height: 1.4;
+  box-shadow: none;
+}
+
+.reveal pre code {
+  max-height: 460px;
+  padding: 0.8em 1em;
+  border-radius: 8px;
+}
+
+.reveal blockquote {
+  margin: 0;
+  padding: 0 0 0 0.9em;
+  border-left: 6px solid var(--c-accent);
+  font-size: 1.4em;
+  line-height: 1.3;
+  font-weight: 500;
+  text-wrap: balance;
+}
+
+.reveal blockquote cite {
+  display: block;
+  margin-top: 0.8em;
+  font-size: 0.55em;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--c-muted);
+}
+
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal th,
+.reveal td {
+  padding: 0.45em 0.7em;
+  text-align: left;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.reveal th {
+  font-weight: 650;
+  background: var(--c-surface);
+}
+
+.reveal td.num,
+.reveal th.num { text-align: right; }
+
+/* ---------- Text helpers ---------- */
+
+.reveal .kicker {
+  margin: 0 0 0.6em;
+  font-size: 0.6em;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-accent);
+}
+
+.reveal .lead {
+  font-size: 1.2em;
+  line-height: 1.35;
+  color: var(--c-muted);
+}
+
+.reveal .muted  { color: var(--c-muted); }
+.reveal .accent { color: var(--c-accent); }
+.reveal .small  { font-size: 0.7em; }
+
+.reveal .source {
+  margin-top: 0.8em;
+  font-size: 0.5em;
+  color: var(--c-muted);
+}
+
+/* ---------- Slide layouts (class on <section>) ---------- */
+
+/* Title slide. Combine with reveal's "center" class for vertical centering. */
+.reveal section.title h1 {
+  max-width: 14em;
+  margin-bottom: 0.3em;
+}
+
+.reveal section.title .lead {
+  max-width: 28em;
+}
+
+.reveal section.title .meta {
+  margin-top: 2.4em;
+  padding-top: 0.8em;
+  border-top: 2px solid var(--c-accent);
+  font-size: 0.65em;
+  color: var(--c-muted);
+}
+
+/* Chapter divider */
+.reveal section.divider .number {
+  display: block;
+  font-size: 3.6em;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-accent);
+}
+
+.reveal section.divider h2 {
+  font-size: 2em;
+}
+
+/* One big sentence */
+.reveal section.statement p {
+  max-width: 20em;
+  font-size: 1.9em;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.reveal section.statement em {
+  font-style: normal;
+  color: var(--c-accent);
+}
+
+/* ---------- Block layouts (class on a <div> inside a slide) ---------- */
+
+/* Equal columns: one per child. */
+.reveal .cols {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* Uneven columns */
+.reveal .cols.wide-left  { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+.reveal .cols.wide-right { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.reveal .cols.middle     { align-items: center; }
+
+.reveal .card {
+  padding: 0.9em 1em;
+  background: var(--c-surface);
+  border-radius: 10px;
+}
+
+.reveal .card > :last-child { margin-bottom: 0; }
+
+.reveal .card h3 {
+  margin-bottom: 0.35em;
+  font-size: 1em;
+}
+
+/* Key figure: <div class="stat"><strong>42%</strong><span>label</span></div> */
+.reveal .stat strong {
+  display: block;
+  font-size: 2.6em;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-accent);
+}
+
+.reveal .stat span {
+  display: block;
+  margin-top: 0.5em;
+  font-size: 0.7em;
+  color: var(--c-muted);
+}
+
+/* Chart.js canvas wrapper; it needs a fixed height. */
+.reveal .chart {
+  position: relative;
+  height: 420px;
+}
+
+.reveal .chart.short { height: 320px; }
+.reveal .chart.tall  { height: 500px; }
+
+/* ---------- Inline SVG diagrams ---------- */
+/* Style SVG through these classes so diagrams follow the theme. */
+
+.reveal svg.diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.reveal svg.diagram text {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  fill: var(--c-text);
+}
+
+.reveal svg.diagram .node {
+  fill: var(--c-surface);
+  stroke: var(--c-border);
+  stroke-width: 2;
+}
+
+.reveal svg.diagram .node.is-accent {
+  fill: var(--c-accent);
+  stroke: var(--c-accent);
+}
+
+.reveal svg.diagram .node.is-accent + text,
+.reveal svg.diagram text.on-accent {
+  fill: var(--c-accent-ink);
+}
+
+.reveal svg.diagram .edge {
+  fill: none;
+  stroke: var(--c-muted);
+  stroke-width: 3;
+}
+
+.reveal svg.diagram .arrowhead {
+  fill: var(--c-muted);
+}
+
+.reveal svg.diagram .label {
+  font-size: 18px;
+  fill: var(--c-muted);
+}
+
+/* ---------- Reveal chrome ---------- */
+
+.reveal .controls,
+.reveal .progress {
+  color: var(--c-accent);
+}
+
+/* Bottom left, so it doesn't collide with the arrow controls */
+.reveal .slide-number {
+  right: auto;
+  left: 16px;
+  bottom: 12px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--c-muted);
+  background: transparent;
+}
+
+@media print {
+  .backgrounds { background-color: var(--c-bg); }
+}
