@@ -34,12 +34,14 @@ def deck_items() -> str:
     for name in names:
         title = deck_title(DECKS / name / "index.html")
         sub = f'\n          <span class="title">{html.escape(title)}</span>' if title else ""
+        href = f"decks/{html.escape(name)}/index.html"
         items.append(
-            f"""      <li>
-        <a href="decks/{html.escape(name)}/index.html">
+            f"""      <li class="deck">
+        <a class="open" href="{href}">
           <span class="name">{html.escape(name)}</span>{sub}
-          <span class="arrow" aria-hidden="true">→</span>
         </a>
+        <a class="pdf" href="{href}?print-pdf" aria-label="Open {html.escape(name)} in print view to save as PDF">PDF</a>
+        <span class="arrow" aria-hidden="true">→</span>
       </li>"""
         )
     return "\n".join(items) if items else '      <li class="empty">No decks yet.</li>'
@@ -150,26 +152,40 @@ PAGE = """<!doctype html>
       list-style: none;
     }
 
-    a {
+    .deck {
+      position: relative;
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr auto auto;
       align-items: center;
-      gap: 4px 16px;
+      gap: 16px;
       padding: 18px 22px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      color: inherit;
-      text-decoration: none;
       transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
     }
-    a:hover,
-    a:focus-visible {
+    .deck:hover,
+    .deck:has(.open:focus-visible) {
       border-color: var(--accent);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px var(--glow);
-      outline: none;
     }
+
+    /* The deck link covers the whole card; the PDF link sits above it. */
+    .open {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+      color: inherit;
+      text-decoration: none;
+    }
+    .open::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+    .open:focus-visible { outline: none; }
 
     .name {
       font-family: var(--mono);
@@ -177,19 +193,39 @@ PAGE = """<!doctype html>
       overflow-wrap: anywhere;
     }
     .title {
-      grid-column: 1;
       color: var(--muted);
       font-size: 15px;
     }
+
+    .pdf {
+      position: relative;
+      z-index: 1;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 13px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .pdf:hover,
+    .pdf:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .pdf:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     .arrow {
-      grid-column: 2;
-      grid-row: 1 / span 2;
       color: var(--accent);
       font-size: 22px;
       transition: transform 0.15s;
     }
-    a:hover .arrow,
-    a:focus-visible .arrow { transform: translateX(4px); }
+    .deck:hover .arrow,
+    .deck:has(.open:focus-visible) .arrow { transform: translateX(4px); }
 
     .empty { color: var(--muted); }
 
@@ -213,7 +249,7 @@ PAGE = """<!doctype html>
     <ul>
 {items}
     </ul>
-    <footer>Built with reveal.js. Arrow keys navigate a deck, <code>Esc</code> shows the overview.</footer>
+    <footer>Built with reveal.js. Arrow keys navigate a deck, <code>Esc</code> shows the overview. PDF opens the print layout; save it with your browser's print dialog.</footer>
   </main>
 </body>
 </html>
@@ -222,7 +258,7 @@ PAGE = """<!doctype html>
 
 def main() -> None:
     items = deck_items()
-    n = items.count("<li>")
+    n = items.count('<li class="deck">')
     count = f"{n} deck" if n == 1 else f"{n} decks"
     OUT.write_text(PAGE.replace("{items}", items).replace("{count}", count), encoding="utf-8")
     print(f"wrote {OUT.relative_to(ROOT)} with {count}")

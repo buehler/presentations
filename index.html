@@ -103,26 +103,40 @@
       list-style: none;
     }
 
-    a {
+    .deck {
+      position: relative;
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr auto auto;
       align-items: center;
-      gap: 4px 16px;
+      gap: 16px;
       padding: 18px 22px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 12px;
-      color: inherit;
-      text-decoration: none;
       transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
     }
-    a:hover,
-    a:focus-visible {
+    .deck:hover,
+    .deck:has(.open:focus-visible) {
       border-color: var(--accent);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px var(--glow);
-      outline: none;
     }
+
+    /* The deck link covers the whole card; the PDF link sits above it. */
+    .open {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+      color: inherit;
+      text-decoration: none;
+    }
+    .open::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+    }
+    .open:focus-visible { outline: none; }
 
     .name {
       font-family: var(--mono);
@@ -130,19 +144,39 @@
       overflow-wrap: anywhere;
     }
     .title {
-      grid-column: 1;
       color: var(--muted);
       font-size: 15px;
     }
+
+    .pdf {
+      position: relative;
+      z-index: 1;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 13px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .pdf:hover,
+    .pdf:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .pdf:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
     .arrow {
-      grid-column: 2;
-      grid-row: 1 / span 2;
       color: var(--accent);
       font-size: 22px;
       transition: transform 0.15s;
     }
-    a:hover .arrow,
-    a:focus-visible .arrow { transform: translateX(4px); }
+    .deck:hover .arrow,
+    .deck:has(.open:focus-visible) .arrow { transform: translateX(4px); }
 
     .empty { color: var(--muted); }
 
@@ -164,15 +198,16 @@
     <h1>Presentations</h1>
     <p class="count">1 deck</p>
     <ul>
-      <li>
-        <a href="decks/2026-11-16_phd-course/index.html">
+      <li class="deck">
+        <a class="open" href="decks/2026-11-16_phd-course/index.html">
           <span class="name">2026-11-16_phd-course</span>
           <span class="title">Prevent SkyNet from taking over</span>
-          <span class="arrow" aria-hidden="true">→</span>
         </a>
+        <a class="pdf" href="decks/2026-11-16_phd-course/index.html?print-pdf" aria-label="Open 2026-11-16_phd-course in print view to save as PDF">PDF</a>
+        <span class="arrow" aria-hidden="true">→</span>
       </li>
     </ul>
-    <footer>Built with reveal.js. Arrow keys navigate a deck, <code>Esc</code> shows the overview.</footer>
+    <footer>Built with reveal.js. Arrow keys navigate a deck, <code>Esc</code> shows the overview. PDF opens the print layout; save it with your browser's print dialog.</footer>
   </main>
 </body>
 </html>

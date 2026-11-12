@@ -22,6 +22,14 @@ decks/<deck>/
   assets/             images, CSV/JSON data
 ```
 
+## Reference
+
+The reveal.js documentation at https://revealjs.com/ covers every feature:
+config options, fragments, auto-animate, transitions, backgrounds, speaker
+notes and speaker view, PDF export (`?print-pdf`), plugins and the JS API.
+Check it before building custom behavior. The vendored copy is 6.0.2; the site
+documents the latest release.
+
 ## Building a deck
 
 1. Read `decks/<deck>/brief.md` and everything in `assets/`.
