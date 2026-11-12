@@ -19,40 +19,31 @@
 <div class="slides">
 
   <!-- ============ Title ============ -->
-  <section class="title center">
+  <section id="title" class="title center">
     <p class="kicker">Event or course name</p>
     <h1>Deck title in a few words</h1>
     <p class="lead">One sentence on what the audience should take away.</p>
     <p class="meta">Speaker name · Venue · Date</p>
-    <aside class="notes">
-      Title slide: section.title.center. Kicker, h1, .lead, .meta.
-    </aside>
   </section>
 
   <!-- ============ Agenda ============ -->
-  <section>
+  <section id="agenda">
     <h2>Agenda</h2>
     <ol>
       <li>Text layouts</li>
       <li>Data and diagrams</li>
       <li>Code and closing</li>
     </ol>
-    <aside class="notes">
-      Plain content slide: h2 plus a list. Slides are top-aligned by default.
-    </aside>
   </section>
 
   <!-- ============ Divider ============ -->
-  <section class="divider center">
+  <section id="divider-text" class="divider center">
     <span class="number">01</span>
     <h2>Text layouts</h2>
-    <aside class="notes">
-      Chapter divider: section.divider.center with a .number and an h2.
-    </aside>
   </section>
 
   <!-- ============ Bullets with fragments ============ -->
-  <section>
+  <section id="bullets">
     <p class="kicker">Bullets</p>
     <h2>Keep each slide to one idea</h2>
     <ul>
@@ -60,14 +51,10 @@
       <li class="fragment">Reveal points one by one with <code>class="fragment"</code></li>
       <li class="fragment">Detail belongs in the speaker notes</li>
     </ul>
-    <aside class="notes">
-      The kicker labels the slide; the h2 states its point as a sentence.
-      Press S for the speaker view (needs a local server).
-    </aside>
   </section>
 
   <!-- ============ Cards in columns ============ -->
-  <section>
+  <section id="cards">
     <h2>Compare options side by side</h2>
     <div class="cols">
       <div class="card">
@@ -83,13 +70,10 @@
         <p>Short description of the third option.</p>
       </div>
     </div>
-    <aside class="notes">
-      div.cols makes one equal column per child. div.card gives a tinted box.
-    </aside>
   </section>
 
   <!-- ============ Text + key figure ============ -->
-  <section>
+  <section id="argument-evidence">
     <h2>Pair an argument with its evidence</h2>
     <div class="cols wide-left middle">
       <div>
@@ -101,13 +85,10 @@
         <span>of the figure's label, kept short</span>
       </div>
     </div>
-    <aside class="notes">
-      div.cols.wide-left gives a 2:1 split; .middle centers the columns vertically.
-    </aside>
   </section>
 
   <!-- ============ Key figures row ============ -->
-  <section>
+  <section id="key-figures">
     <h2>Key figures</h2>
     <div class="cols">
       <div class="stat"><strong>1,284</strong><span>Participants</span></div>
@@ -115,54 +96,39 @@
       <div class="stat"><strong>4.6</strong><span>Average rating out of 5</span></div>
     </div>
     <p class="source">Example data.</p>
-    <aside class="notes">
-      A row of div.stat inside div.cols. Use this instead of a chart when the
-      point is a few headline numbers.
-    </aside>
   </section>
 
   <!-- ============ Statement ============ -->
-  <section class="statement center">
+  <section id="statement" class="statement center">
     <p>A statement slide carries <em>one sentence</em> and nothing else.</p>
-    <aside class="notes">
-      section.statement.center. Wrap the key phrase in em to color it.
-    </aside>
   </section>
 
   <!-- ============ Quote ============ -->
-  <section class="center">
+  <section id="quote" class="center">
     <blockquote>
       A quote that supports the argument, kept to two lines.
       <cite>Name, role or source</cite>
     </blockquote>
-    <aside class="notes">
-      blockquote with a cite inside. Only quote real sources, with attribution.
-    </aside>
   </section>
 
   <!-- ============ Divider ============ -->
-  <section class="divider center">
+  <section id="divider-data" class="divider center">
     <span class="number">02</span>
     <h2>Data and diagrams</h2>
   </section>
 
   <!-- ============ Chart.js ============ -->
-  <section>
+  <section id="chart">
     <h2>Enrolment grew every year since 2021</h2>
     <div class="chart">
       <canvas data-chart="enrolment" role="img"
         aria-label="Bar chart of students per year: 182 in 2021, 205 in 2022, 231 in 2023, 248 in 2024, 276 in 2025."></canvas>
     </div>
     <p class="source">Example data. Students enrolled per year.</p>
-    <aside class="notes">
-      Chart.js chart. The canvas names a builder in the CHARTS object at the
-      bottom of this file; data sits inline in DATA. Charts build when their
-      slide is first shown, so the animation plays on arrival.
-    </aside>
   </section>
 
   <!-- ============ Inline SVG diagram ============ -->
-  <section>
+  <section id="diagram">
     <h2>From brief to published deck</h2>
     <svg class="diagram" viewBox="0 0 1152 230" role="img"
       aria-label="Process: Brief, then Draft, then Review, then Publish.">
@@ -195,15 +161,10 @@
       <text x="1038" y="95" text-anchor="middle" dominant-baseline="middle">Publish</text>
       <text class="label" x="1038" y="195" text-anchor="middle">GitHub Pages</text>
     </svg>
-    <aside class="notes">
-      Inline SVG with class="diagram". Color comes from the classes node,
-      node is-accent, edge, arrowhead and label, so it follows the theme.
-      Never set fill or stroke colors directly.
-    </aside>
   </section>
 
   <!-- ============ Table ============ -->
-  <section>
+  <section id="table">
     <h2>Compare in a table when there are more than three options</h2>
     <table>
       <thead>
@@ -217,33 +178,25 @@
       </tbody>
     </table>
     <p class="source">Example data.</p>
-    <aside class="notes">
-      Plain table. Put class="num" on numeric cells to right-align them.
-    </aside>
   </section>
 
   <!-- ============ Code ============ -->
-  <section>
+  <section id="code">
     <p class="kicker">Code</p>
     <h2>A slide in this template</h2>
-    <pre><code class="language-html" data-trim data-line-numbers="2-3"><script type="text/template">
-<section>
+    <pre><code class="language-html" data-trim data-line-numbers="1-3"><script type="text/template">
+<section id="one-idea">
   <p class="kicker">Bullets</p>
   <h2>Keep each slide to one idea</h2>
   <ul>
     <li class="fragment">Three bullets at most</li>
   </ul>
-  <aside class="notes">Detail goes here.</aside>
 </section>
     </script></code></pre>
-    <aside class="notes">
-      Highlight plugin. Wrap HTML in script type="text/template" so it isn't
-      parsed. data-line-numbers="2-3" highlights those lines.
-    </aside>
   </section>
 
   <!-- ============ Closing ============ -->
-  <section class="title center">
+  <section id="closing" class="title center">
     <h1>Thank you</h1>
     <p class="lead">Questions and discussion</p>
     <p class="meta">Speaker name · email or link</p>
@@ -257,6 +210,7 @@
 <script src="../vendor/reveal/dist/plugin/highlight.js"></script>
 <script src="../vendor/reveal/dist/plugin/zoom.js"></script>
 <script src="../vendor/chart/chart.umd.min.js"></script>
+<script src="notes.js"></script>
 <script>
   // ---- Data: copied from assets/, which stays the source of truth ----
   const DATA = {
@@ -317,6 +271,37 @@
       if (build) new Chart(canvas, build());
     });
   }
+
+  // ---- Speaker notes: text lives in notes.js, keyed by slide id ----
+  // Blank line = new paragraph; a line starting with "- " or "1. " starts a
+  // new line; other line breaks become spaces. Text is escaped, not HTML.
+  function addNotes(notes = {}) {
+    const escape = (s) =>
+      s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+    const toHtml = (text) => text.trim().split(/\n\s*\n/).map((para) => {
+      const lines = para.split('\n').map((line) => escape(line.trim()));
+      const body = lines.reduce((out, line) =>
+        out + (/^(-|\d+\.)\s/.test(line) ? '<br>' : ' ') + line);
+      return `<p>${body}</p>`;
+    }).join('\n');
+
+    Object.entries(notes).forEach(([id, text]) => {
+      const slide = document.getElementById(id);
+      if (!slide || slide.tagName !== 'SECTION') {
+        console.warn(`notes.js: no slide with id "${id}"`);
+        return;
+      }
+      if (slide.querySelector(':scope > aside.notes')) {
+        console.warn(`notes.js: slide "${id}" already has inline notes; kept those`);
+        return;
+      }
+      const aside = document.createElement('aside');
+      aside.className = 'notes';
+      aside.innerHTML = toHtml(text);
+      slide.append(aside);
+    });
+  }
+  addNotes(window.NOTES);
 
   // ---- reveal.js ----
   Reveal.initialize({

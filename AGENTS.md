@@ -15,9 +15,11 @@ themes/base.css       foundation for every deck: typography, layout classes,
                       default tokens (CSS variables)
 themes/<name>.css     shared themes (e.g. hsg.css); mostly token overrides
 template/index.html   demo deck showing every layout; the base for new decks
+template/notes.js     the demo deck's speaker notes
 decks/<deck>/
   brief.md            idea, audience, context, style notes (written by the user)
   index.html          the deck
+  notes.js            speaker notes, one entry per slide id (the user edits these)
   theme.css           optional deck-specific theme
   assets/             images, CSV/JSON data
 ```
@@ -33,8 +35,8 @@ documents the latest release.
 ## Building a deck
 
 1. Read `decks/<deck>/brief.md` and everything in `assets/`.
-2. Copy `template/index.html` to `decks/<deck>/index.html` and fix relative
-   paths (`../../vendor/...`, `../../themes/...`).
+2. Copy `template/index.html` and `template/notes.js` to `decks/<deck>/` and
+   fix relative paths in `index.html` (`../../vendor/...`, `../../themes/...`).
 3. Pick the shared theme named in the brief. Put deck-specific styling in
    `decks/<deck>/theme.css`, loaded after the shared theme. CSS load order:
    reveal `reset.css`, `reveal.css`, `themes/base.css`, `themes/<theme>.css`,
@@ -61,8 +63,24 @@ Similar to "Building a deck" above, but instead of "brief.md" there will be an i
   fonts always come from the tokens (`--c-*`, `--chart-*`, `--font-*`).
 - Slides are top-aligned (`center: false`); add `class="center"` to a section
   to center it vertically.
-- One idea per slide. Short text; detail goes in speaker notes
-  (`<aside class="notes">`).
+- One idea per slide. Short text; detail goes in speaker notes.
+- Speaker notes live in the deck's `notes.js`, not in `index.html`, so the user
+  can edit them without touching the slides:
+  - Every `<section>` gets a short, unique, kebab-case `id` describing its
+    content (`id="attack-chain"`). The id is also the slide's URL
+    (`#/attack-chain`), so don't use slide numbers.
+  - `notes.js` sets ``window.NOTES = { 'slide-id': `text`, ... }``, in slide
+    order, with a `// <slide label>` comment above each entry. Plain text in
+    backticks: a blank line starts a paragraph, a line starting with `- ` or
+    `1. ` starts a list line, other line breaks become spaces. No HTML.
+  - `addNotes()` in the deck's script turns each entry into an
+    `<aside class="notes">` before reveal.js starts, so the speaker view and
+    `?print-pdf&showNotes=true` work as usual. It warns in the console about
+    keys that match no slide.
+  - When a slide is added, renamed or removed, update its `notes.js` entry in
+    the same change. Don't add inline `<aside class="notes">` to slides.
+  - The deck's `notes.js` is unrelated to reveal's notes plugin
+    (`vendor/reveal/dist/plugin/notes.js`); decks load both.
 - Charts: Chart.js for data charts, inline SVG for diagrams and very simple
   figures. Never screenshots of charts. Follow the template's pattern: a
   `<canvas data-chart="name">` inside `div.chart`, a builder in `CHARTS`, data
@@ -70,9 +88,9 @@ Similar to "Building a deck" above, but instead of "brief.md" there will be an i
   SVG `role="img"` and an `aria-label` that states the data.
 - SVG diagrams get `class="diagram"` and are colored only through its classes
   (`node`, `is-accent`, `edge`, `arrowhead`, `label`).
-- `fetch()` fails under `file://`, so don't load `assets/*.json` or `.csv` at
-  runtime. Put the data inline in `DATA`, copied from `assets/`, which stays
-  the source of truth.
+- `fetch()` fails under `file://`, so don't load `assets/*.json` or `.csv`
+  (or notes as `.md`/`.json`) at runtime; a `<script src>` works. Put the data
+  inline in `DATA`, copied from `assets/`, which stays the source of truth.
 - Images need `alt` text.
 
 ## Verification
