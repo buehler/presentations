@@ -297,7 +297,7 @@ http://malicious.org?content=&lt;content&gt;</span>
     <p class="kicker">AgentBound</p>
     <h2>Android-style permissions for MCP servers</h2>
     <div class="flow">
-      <div class="card fragment">
+      <div class="card fragment" data-fragment-index="1">
         <h3>1 · AgentManifest</h3>
         <p>The server declares what it needs.</p>
         <div class="term"><div class="term-body">
@@ -307,8 +307,8 @@ http://malicious.org?content=&lt;content&gt;</span>
           <span class="line">]</span>
         </div></div>
       </div>
-      <span class="arrow fragment">→</span>
-      <div class="card fragment">
+      <span class="arrow fragment" data-fragment-index="2">→</span>
+      <div class="card fragment" data-fragment-index="2">
         <h3>2 · Runtime permissions</h3>
         <p>The engineer scopes them, the user consents.</p>
         <div class="term"><div class="term-body">
@@ -318,8 +318,8 @@ http://malicious.org?content=&lt;content&gt;</span>
           <span class="line ok">  → MAPS_API_KEY</span>
         </div></div>
       </div>
-      <span class="arrow fragment">→</span>
-      <div class="card is-safe fragment">
+      <span class="arrow fragment" data-fragment-index="3">→</span>
+      <div class="card is-safe fragment" data-fragment-index="3">
         <h3>3 · AgentBox</h3>
         <p>Container, deny by default, no server changes.</p>
         <div class="term"><div class="term-body">
@@ -469,10 +469,9 @@ async function handlePlaceDetails(id) {
           <span class="line warn">⚠ rule: private key read</span>
           <span class="line alert">✕ SIGKILL agent, before connect</span>
         </div></div>
-        <p class="fragment"><span class="stamp is-alert">killed</span></p>
       </div>
       <div class="card fragment">
-        <h3>Agent security testing</h3>
+        <h3>Agent testing</h3>
         <p class="small muted">A testing framework for agents, skills and MCP servers that asserts on behavior, not only on outcomes.</p>
         <div class="term"><div class="term-body">
           <span class="line ok">✓ no secret reads</span>
@@ -485,7 +484,7 @@ async function handlePlaceDetails(id) {
 
   <!-- ============ 16 · Key insights (stays up for Q&A) ============ -->
   <section id="summary">
-    <p class="kicker">The PhD in one slide</p>
+    <p class="kicker">My PhD in one slide</p>
     <h2>Make AI agents safe to deploy, with <em>deterministic</em> engineering</h2>
     <div class="pillars compact">
       <div class="pillar">
