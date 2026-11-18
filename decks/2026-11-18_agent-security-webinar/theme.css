@@ -1,0 +1,389 @@
+/*
+ * Deck theme: HSG (University of St.Gallen), taken from the FSE AgentBound
+ * PowerPoint template. Loaded after themes/base.css (themes/hsg.css is empty).
+ *
+ * What it reproduces from the PPTX master:
+ *   - title slide: top half solid HSG green, white centered title,
+ *     speaker line and logo on the white lower half
+ *   - content slides: white, centered heading, green subtitle line,
+ *     green HSG logo bottom left (added as a slide background in index.html)
+ *   - type: Aptos when installed (Office font), else Helvetica/Arial
+ *
+ * Color semantics:
+ *   green (--c-accent)  HSG brand, protected, allowed
+ *   red   (--c-alert)   threat, denied
+ */
+
+/* ---------- Fonts (only the vendored mono font is loaded) ---------- */
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../../vendor/fonts/jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../../vendor/fonts/jetbrains-mono/JetBrainsMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Tokens ---------- */
+
+:root {
+  --c-bg: #ffffff;
+  --c-text: #222222;
+  --c-muted: #595959;
+  --c-accent: #00802f;           /* HSG green */
+  --c-accent-ink: #ffffff;
+  --c-surface: #eaf1ea;          /* pale green, from the PPTX step cards */
+  --c-border: #c9d6cb;
+
+  --c-accent-dark: #006325;
+  --c-alert: #c0392b;            /* threat / deny */
+  --c-alert-fill: #fbeceA;
+  --c-neutral-fill: #f2f2f2;
+  --c-code-bg: #f7f7f5;
+
+  --chart-1: #00802f;
+  --chart-2: #c0392b;
+  --chart-3: #595959;
+  --chart-4: #8fbf9a;
+  --chart-5: #fbae40;
+  --chart-grid: #e6e8eb;
+
+  --font-sans: "Aptos", "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fw-heading: 600;
+  --pad: 56px;
+}
+
+/* ---------- Headings: centered like the PPTX title placeholder ---------- */
+
+.reveal h2 {
+  margin-bottom: 0.15em;
+  text-align: center;
+}
+
+.reveal .sub {
+  margin: 0 0 1.3em;
+  text-align: center;
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--c-accent);
+}
+
+.reveal .center-text { text-align: center; }
+.reveal .alert { color: var(--c-alert); }
+
+/* ---------- Title slide (green band comes from data-background-gradient) ---------- */
+
+.reveal section.hsg-title {
+  height: 720px;
+  text-align: center;
+}
+
+.reveal section.hsg-title .band {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 248px;               /* green half is 360px; minus top padding */
+  color: var(--c-accent-ink);
+}
+
+.reveal section.hsg-title .kicker {
+  color: var(--c-accent-ink);
+  opacity: 0.85;
+}
+
+.reveal section.hsg-title h1 {
+  max-width: none;
+  margin: 0 0 0.2em;
+  font-size: 2.3em;
+  color: var(--c-accent-ink);
+}
+
+.reveal section.hsg-title .band p {
+  margin: 0;
+  font-size: 1em;
+}
+
+.reveal section.hsg-title .speaker {
+  margin: 82px 0 0.2em;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.reveal section.hsg-title .meta {
+  margin: 0;
+  font-size: 0.65em;
+  color: var(--c-muted);
+}
+
+.reveal section.hsg-title .title-logo {
+  position: absolute;
+  right: var(--pad);
+  bottom: 40px;
+  width: 260px;
+}
+
+/* ---------- Figures ---------- */
+
+.reveal .figure {
+  display: block;
+  margin: 0 auto;
+  max-height: 470px;
+  object-fit: contain;
+}
+
+.reveal .figure.short { max-height: 420px; }
+
+.reveal .framed {
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+}
+
+.reveal .caption {
+  margin-top: 0.6em;
+  text-align: center;
+  font-size: 0.6em;
+  color: var(--c-muted);
+}
+
+/* Two news headlines side by side */
+.reveal .headline {
+  padding: 12px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+}
+
+.reveal .headline img {
+  display: block;
+  width: 100%;
+}
+
+/* ---------- Cards and steps ---------- */
+
+.reveal .card {
+  border-top: 5px solid var(--c-accent);
+}
+
+.reveal .card.is-alert {
+  background: var(--c-alert-fill);
+  border-top-color: var(--c-alert);
+}
+
+.reveal .card.is-alert h3 { color: var(--c-alert); }
+
+.reveal .card ul {
+  margin-left: 0.9em;
+  font-size: 0.85em;
+}
+
+.reveal .card.is-alert li::marker { color: var(--c-alert); }
+
+.reveal .step-no {
+  display: block;
+  margin-bottom: 0.3em;
+  font-size: 1.6em;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-accent);
+}
+
+.reveal .card .small { color: var(--c-muted); }
+
+/* Numbered leadership checklist */
+.reveal ol.actions {
+  counter-reset: action;
+  list-style: none;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.reveal ol.actions li {
+  counter-increment: action;
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: baseline;
+  margin: 0 0 0.75em;
+}
+
+.reveal ol.actions li::before {
+  content: counter(action);
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--c-accent);
+}
+
+.reveal ol.actions li span {
+  display: block;
+  font-size: 0.7em;
+  color: var(--c-muted);
+}
+
+/* ---------- Stats ---------- */
+
+.reveal .stats {
+  margin-top: 1.2em;
+}
+
+.reveal .stat {
+  padding-top: 0.6em;
+  border-top: 3px solid var(--c-accent);
+  text-align: center;
+}
+
+.reveal .stat strong { font-size: 2.2em; }
+
+.reveal .stat span {
+  font-size: 0.65em;
+  color: var(--c-text);
+}
+
+.reveal .stat span em {
+  display: block;
+  margin-top: 0.3em;
+  font-style: normal;
+  color: var(--c-muted);
+}
+
+/* ---------- Statement ---------- */
+
+.reveal section.statement p {
+  margin: 0 auto;
+  max-width: 19em;
+  text-align: center;
+}
+
+.reveal section.statement .small {
+  margin-top: 1.4em;
+  font-size: 0.7em;
+  font-weight: 400;
+  color: var(--c-muted);
+}
+
+/* ---------- Code card (light, like the PPTX code images) ---------- */
+
+.reveal pre {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 0.62em;
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.reveal pre code.hljs {
+  max-height: none;
+  padding: 1em 1.2em;
+  background: var(--c-code-bg);
+  color: var(--c-text);
+}
+
+.reveal .hljs-meta,
+.reveal .hljs-title    { color: var(--c-accent); }
+.reveal .hljs-keyword  { color: var(--c-alert); }
+.reveal .hljs-built_in,
+.reveal .hljs-type     { color: #1d6fa5; }
+.reveal .hljs-string   { color: #9a6a1f; }
+.reveal .hljs-comment  { color: var(--c-muted); }
+.reveal .hljs-ln-numbers { color: #b0b0b0; }
+
+/* reveal dims non-highlighted lines; keep the focus lines strong */
+.reveal .hljs.has-highlights tr:not(.highlight-line) { opacity: 0.3; }
+
+/* ---------- Diagrams ---------- */
+
+.reveal svg.diagram text { font-size: 22px; }
+.reveal svg.diagram text.strong { font-weight: 700; }
+.reveal svg.diagram text.mono {
+  font-family: var(--font-mono);
+  font-size: 18px;
+}
+
+.reveal svg.diagram .frame {
+  fill: var(--c-surface);
+  stroke: var(--c-accent);
+  stroke-width: 3;
+  stroke-dasharray: 14 8;
+}
+
+.reveal svg.diagram .node.is-policy {
+  fill: var(--c-accent);
+  stroke: var(--c-accent);
+}
+
+.reveal svg.diagram .node.is-allow {
+  fill: var(--c-bg);
+  stroke: var(--c-accent);
+  stroke-width: 3;
+}
+
+.reveal svg.diagram .node.is-deny {
+  fill: var(--c-alert-fill);
+  stroke: var(--c-alert);
+  stroke-width: 3;
+}
+
+.reveal svg.diagram .node.is-env {
+  fill: var(--c-neutral-fill);
+  stroke-dasharray: 8 6;
+}
+
+.reveal svg.diagram .edge.is-allow { stroke: var(--c-accent); stroke-width: 4; }
+.reveal svg.diagram .edge.is-deny  { stroke: var(--c-alert);  stroke-width: 4; }
+.reveal svg.diagram .arrowhead.is-allow { fill: var(--c-accent); }
+.reveal svg.diagram .arrowhead.is-deny  { fill: var(--c-alert); }
+
+.reveal svg.diagram .label.is-accent { fill: var(--c-accent); font-weight: 700; }
+.reveal svg.diagram .label.is-alert  { fill: var(--c-alert);  font-weight: 700; }
+.reveal svg.diagram text.is-accent   { fill: var(--c-accent); }
+.reveal svg.diagram text.is-alert    { fill: var(--c-alert); }
+
+/* ---------- Closing slide ---------- */
+
+.reveal .qr {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.reveal .qr img {
+  width: 150px;
+  height: 150px;
+  flex: none;
+}
+
+.reveal .qr p { margin: 0; }
+.reveal .qr .small { color: var(--c-muted); }
+
+.reveal .badges {
+  display: flex;
+  gap: 12px;
+  margin-top: 0.6em;
+}
+
+.reveal .badges img { width: 72px; }
+
+.reveal .contact {
+  margin-top: 1.4em;
+  padding-top: 0.7em;
+  border-top: 2px solid var(--c-accent);
+  text-align: center;
+  font-size: 0.65em;
+  color: var(--c-muted);
+}
+
+/* ---------- Reveal chrome ---------- */
+
+.reveal .slide-number {
+  left: auto;
+  right: 16px;
+}
