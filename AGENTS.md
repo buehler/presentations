@@ -96,3 +96,4 @@ Similar to "Building a deck" above, but instead of "brief.md" there will be an i
 ## Verification
 
 No tests. You may verify the presentation with your internal browser and hosting tools. No need to test PDF download, only that the slides work.
+To run the decks or the overview page, use the python http server on port 8000: "python -m http.server 8000" within the path-to-show.
