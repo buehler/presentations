@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Deck title</title>
 
-  <!-- Paths are relative to template/. In decks/<deck>/ use ../../ instead of ../ -->
-  <link rel="stylesheet" href="../vendor/reveal/dist/reset.css">
-  <link rel="stylesheet" href="../vendor/reveal/dist/reveal.css">
-  <link rel="stylesheet" href="../vendor/reveal/dist/plugin/highlight/monokai.css">
-  <link rel="stylesheet" href="../themes/base.css">
-  <link rel="stylesheet" href="../themes/hsg.css">
-  <!-- Deck-specific overrides, if the deck has them: -->
-  <!-- <link rel="stylesheet" href="theme.css"> -->
+  <!-- Vendored reveal.js and Chart.js are shared from the repo root (../../vendor/).
+       Everything else is local to this folder, so the deck keeps working when
+       the template or other decks change. -->
+  <link rel="stylesheet" href="../../vendor/reveal/dist/reset.css">
+  <link rel="stylesheet" href="../../vendor/reveal/dist/reveal.css">
+  <link rel="stylesheet" href="../../vendor/reveal/dist/plugin/highlight/monokai.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="theme.css">
 </head>
 <body>
 <div class="reveal">
@@ -205,11 +205,11 @@
 </div>
 </div>
 
-<script src="../vendor/reveal/dist/reveal.js"></script>
-<script src="../vendor/reveal/dist/plugin/notes.js"></script>
-<script src="../vendor/reveal/dist/plugin/highlight.js"></script>
-<script src="../vendor/reveal/dist/plugin/zoom.js"></script>
-<script src="../vendor/chart/chart.umd.min.js"></script>
+<script src="../../vendor/reveal/dist/reveal.js"></script>
+<script src="../../vendor/reveal/dist/plugin/notes.js"></script>
+<script src="../../vendor/reveal/dist/plugin/highlight.js"></script>
+<script src="../../vendor/reveal/dist/plugin/zoom.js"></script>
+<script src="../../vendor/chart/chart.umd.min.js"></script>
 <script src="notes.js"></script>
 <script>
   // ---- Data: copied from assets/, which stays the source of truth ----

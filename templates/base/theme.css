@@ -1,0 +1,11 @@
+/*
+ * theme.css: deck-specific styling, loaded after base.css.
+ *
+ * Override tokens (--c-*, --chart-*, --font-*) in :root and add deck classes
+ * here; keep base.css as copied from the template so it is easy to compare.
+ * Fonts come only from the shared vendor folder, e.g.
+ * url("../../vendor/fonts/<family>/<file>.woff2").
+ */
+
+:root {
+}

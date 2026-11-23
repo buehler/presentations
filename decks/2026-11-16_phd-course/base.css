@@ -1,12 +1,15 @@
 /*
- * base.css: shared foundation for every deck.
+ * base.css: foundation of the "base" template.
+ *
+ * Every deck carries its own copy of this file (copied from templates/<name>/),
+ * so editing it here never changes existing decks.
  *
  * Load order in a deck:
- *   reveal reset.css -> reveal.css -> themes/base.css -> themes/<theme>.css -> deck theme.css
+ *   reveal reset.css -> reveal.css -> base.css -> theme.css
  *
  * This file owns typography rules, layout classes, and neutral default tokens.
- * Themes (themes/<name>.css) and deck themes (decks/<deck>/theme.css) should
- * mostly override the tokens in :root, and add rules only for brand details.
+ * theme.css should mostly override the tokens in :root, and add rules only for
+ * brand or deck details.
  * No reveal.js theme from vendor/reveal/dist/theme/ is loaded; this replaces it.
  */
 

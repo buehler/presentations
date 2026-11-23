@@ -1,7 +1,8 @@
 /*
  * Deck theme: "Ember on ink" for "Prevent SkyNet from taking over".
- * Loaded after themes/base.css. Overrides tokens, adds deck classes and
- * CSS-only animations.
+ * Loaded after base.css (the deck's copy of templates/base/base.css).
+ * Overrides tokens, adds deck classes and CSS-only animations.
+ * Fonts are shared from vendor/fonts/ (SIL OFL).
  *
  * Color semantics used throughout the deck:
  *   ember (--c-accent)   threat, attention

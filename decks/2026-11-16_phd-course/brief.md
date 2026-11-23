@@ -118,7 +118,7 @@ Same authors. Observes an agent from outside the agent.
 
 ## Style
 
-- Custom deck theme `theme.css`, built on `themes/base.css`, no shared theme.
+- Custom deck theme `theme.css`, built on the deck's own `base.css` (copied from `templates/base/`); fonts from `vendor/fonts/`.
 - Palette "Ember on ink" (dark):
   - bg `#15171C` charcoal, text `#F1ECE4` bone
   - accent `#FF7A1A` ember, accent 2 `#FFB347` amber
