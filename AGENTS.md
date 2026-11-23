@@ -23,6 +23,9 @@ templates/<name>/     copy-ready deck templates; `base` is the default
   notes.js            the demo deck's speaker notes
   base.css            foundation: typography, layout classes, default tokens
   theme.css           the template's token overrides and brand rules
+  assets/             optional, template images such as logos
+  _sources/           optional, source material the template was derived
+                      from (gitignored, never copied into a deck)
 decks/<deck>/         one folder per deck, created by copying a template
   brief.md            idea, audience, context, style notes (written by the user)
   index.html          the deck
@@ -47,8 +50,10 @@ documents the latest release.
 
 1. Read `decks/<deck>/brief.md` and everything in `assets/`.
 2. Pick the template named in the brief (default: `base`) and copy all of its
-   files into `decks/<deck>/`, without overwriting `brief.md` or `assets/`:
-   `cp -R templates/<name>/. decks/<deck>/`. Paths need no changes.
+   files except `_sources/` into `decks/<deck>/`; template assets merge into
+   the deck's `assets/` without replacing the user's files:
+   `rsync -a --ignore-existing --exclude _sources templates/<name>/ decks/<deck>/`.
+   Paths need no changes.
 3. Put deck-specific styling in the deck's `theme.css`; leave the copied
    `base.css` as it is unless the deck really needs a change there (it only
    affects this deck). CSS load order: reveal `reset.css`, `reveal.css`,
@@ -62,9 +67,15 @@ documents the latest release.
 
 ## Templates
 
-- `templates/base/` is the default. Other templates (e.g. an HSG template)
-  live next to it as `templates/<name>/`, each a complete, working demo deck
-  with the same file set (`index.html`, `notes.js`, `base.css`, `theme.css`).
+- Available templates:
+  - `base`: the default; neutral, system fonts, blue accent.
+  - `hsg`: University of St.Gallen, derived from the HSG PowerPoint master.
+    White slides with a centered title and a green `p.subtitle` under it, HSG
+    logo bottom left (from `theme.css`), green band title and closing slides
+    (`section.band`), full green dividers, green table headers, light green
+    step cards, code in `pre.window`, `.takeaway` lines (`.danger` for red).
+- Each template is a complete, working demo deck with the same file set
+  (`index.html`, `notes.js`, `base.css`, `theme.css`, optional `assets/`).
 - To create a template, copy an existing one and change its `theme.css`
   (and `base.css` or demo slides if needed). Templates are previewable at
   `templates/<name>/index.html`.

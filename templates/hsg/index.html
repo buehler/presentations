@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HSG deck title</title>
+
+  <!-- Vendored reveal.js and Chart.js are shared from the repo root (../../vendor/).
+       Everything else is local to this folder, so the deck keeps working when
+       the template or other decks change. -->
+  <link rel="stylesheet" href="../../vendor/reveal/dist/reset.css">
+  <link rel="stylesheet" href="../../vendor/reveal/dist/reveal.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- ============ Title (green band) ============ -->
+  <section id="title" class="band">
+    <div class="band-head">
+      <h1>Deck title in a few words</h1>
+      <p class="lead">Optional subtitle: what the audience should take away</p>
+    </div>
+    <div class="band-body">
+      <p class="authors">
+        <span class="presenter">Presenter Name</span>
+        <span>Co-author Name</span>
+        <span>Co-author Name</span>
+      </p>
+      <p class="meta">Event or venue · Month Year</p>
+      <img class="logo" src="assets/hsg-logo.svg" alt="University of St.Gallen">
+    </div>
+  </section>
+
+  <!-- ============ Agenda ============ -->
+  <section id="agenda">
+    <h2>Agenda</h2>
+    <ol class="narrow">
+      <li>Text layouts</li>
+      <li>Data and diagrams</li>
+      <li>Code and closing</li>
+    </ol>
+  </section>
+
+  <!-- ============ Divider ============ -->
+  <section id="divider-text" class="divider center">
+    <span class="number">01</span>
+    <h2>Text layouts</h2>
+  </section>
+
+  <!-- ============ Title + subtitle, bullets ============ -->
+  <section id="bullets">
+    <h2>Slide Title</h2>
+    <p class="subtitle">A green subtitle names the slide's topic</p>
+    <ul class="narrow">
+      <li class="fragment">Three bullets at most, each a single line</li>
+      <li class="fragment">Reveal points one by one with <code>class="fragment"</code></li>
+      <li class="fragment">Detail belongs in the speaker notes</li>
+    </ul>
+  </section>
+
+  <!-- ============ Step cards + takeaway ============ -->
+  <section id="steps">
+    <h2>Approach</h2>
+    <p class="subtitle">Three steps, one card each</p>
+    <div class="cols">
+      <div class="card">
+        <span class="step">1</span>
+        <h3>First step</h3>
+        <p>One or two lines on what happens in this step.</p>
+      </div>
+      <div class="card">
+        <span class="step">2</span>
+        <h3>Second step</h3>
+        <p>One or two lines on what happens in this step.</p>
+      </div>
+      <div class="card">
+        <span class="step">3</span>
+        <h3>Third step</h3>
+        <p>One or two lines on what happens in this step.</p>
+      </div>
+    </div>
+    <p class="takeaway">→ The result of the three steps in one line</p>
+  </section>
+
+  <!-- ============ Text + key figure ============ -->
+  <section id="argument-evidence">
+    <h2>Argument and Evidence</h2>
+    <p class="subtitle">Pair a claim with the number that backs it</p>
+    <div class="cols wide-left middle">
+      <div>
+        <p>Use the wide column for the argument and the narrow one for the key figure.</p>
+        <p class="muted">Variants: <code>wide-left</code>, <code>wide-right</code>, <code>middle</code>.</p>
+      </div>
+      <div class="stat">
+        <strong>72%</strong>
+        <span>of the figure's label, kept short</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Key figures row ============ -->
+  <section id="key-figures">
+    <h2>Results</h2>
+    <p class="subtitle">Key figures</p>
+    <div class="cols">
+      <div class="stat"><strong>296</strong><span>items analyzed</span></div>
+      <div class="stat"><strong>80.9%</strong><span>accepted by reviewers</span></div>
+      <div class="stat"><strong>96.5%</strong><span>match the reference</span></div>
+    </div>
+    <p class="takeaway">One sentence on what the figures mean.</p>
+    <p class="source">Example data.</p>
+  </section>
+
+  <!-- ============ Research questions ============ -->
+  <section id="questions">
+    <h2>Evaluation</h2>
+    <p class="subtitle">Can we answer the <strong>main question</strong> of the talk?</p>
+    <div class="narrow">
+      <p><strong class="accent">RQ1 · Completeness</strong> First research question, in one sentence?</p>
+      <p><strong class="accent">RQ2 · Security</strong> Second research question, in one sentence?</p>
+      <p><strong class="accent">RQ3 · Efficiency</strong> Third research question, in one sentence?</p>
+    </div>
+  </section>
+
+  <!-- ============ Statement ============ -->
+  <section id="statement" class="statement center">
+    <p>A statement slide carries <em>one sentence</em> and nothing else.</p>
+  </section>
+
+  <!-- ============ Quote ============ -->
+  <section id="quote" class="center">
+    <blockquote class="narrow">
+      A quote that supports the argument, kept to two lines.
+      <cite>Name, role or source</cite>
+    </blockquote>
+  </section>
+
+  <!-- ============ Divider ============ -->
+  <section id="divider-data" class="divider center">
+    <span class="number">02</span>
+    <h2>Data and diagrams</h2>
+  </section>
+
+  <!-- ============ Chart.js ============ -->
+  <section id="chart">
+    <h2>Evaluation</h2>
+    <p class="subtitle">Most-requested capabilities</p>
+    <div class="chart short">
+      <canvas data-chart="capabilities" role="img"
+        aria-label="Horizontal bar chart of share of servers requesting each capability: network.client 83.1%, system.env.read 79.6%, filesystem.read 74.1%, filesystem.write 49.3%."></canvas>
+    </div>
+    <p class="takeaway">Most servers ask for network access.</p>
+    <p class="source">Example data. Share of servers requesting each capability.</p>
+  </section>
+
+  <!-- ============ Inline SVG diagram ============ -->
+  <section id="diagram">
+    <h2>Architecture</h2>
+    <p class="subtitle">From request to environment</p>
+    <svg class="diagram" viewBox="0 0 1152 230" role="img"
+      aria-label="Flow: User, then Agent, then Policy engine (highlighted), then Environment.">
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+          markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+          <path class="arrowhead" d="M0,0 L10,5 L0,10 z"/>
+        </marker>
+      </defs>
+
+      <rect class="node" x="0" y="40" width="228" height="110" rx="12"/>
+      <text x="114" y="95" text-anchor="middle" dominant-baseline="middle">User</text>
+
+      <line class="edge" x1="236" y1="95" x2="300" y2="95" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+
+      <rect class="node" x="308" y="40" width="228" height="110" rx="12"/>
+      <text x="422" y="95" text-anchor="middle" dominant-baseline="middle">Agent</text>
+
+      <line class="edge" x1="544" y1="95" x2="608" y2="95" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+
+      <rect class="node is-accent" x="616" y="40" width="228" height="110" rx="12"/>
+      <text x="730" y="95" text-anchor="middle" dominant-baseline="middle">Policy engine</text>
+      <text class="label" x="730" y="195" text-anchor="middle">the contribution</text>
+
+      <line class="edge" x1="852" y1="95" x2="916" y2="95" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+
+      <rect class="node" x="924" y="40" width="228" height="110" rx="12"/>
+      <text x="1038" y="95" text-anchor="middle" dominant-baseline="middle">Environment</text>
+      <text class="label" x="1038" y="195" text-anchor="middle">OS, network, files</text>
+    </svg>
+  </section>
+
+  <!-- ============ Table ============ -->
+  <section id="table">
+    <h2>Overview</h2>
+    <p class="subtitle">A table with a green header</p>
+    <table class="narrow">
+      <thead>
+        <tr><th>Category</th><th>Items</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Filesystem</td><td><code>read · write · delete</code></td></tr>
+        <tr><td>System</td><td><code>env read/write · exec · process</code></td></tr>
+        <tr><td>Network</td><td><code>client · server · bluetooth</code></td></tr>
+        <tr><td>Other</td><td><code>location · notifications · clipboard</code></td></tr>
+      </tbody>
+    </table>
+    <p class="source">Example data.</p>
+  </section>
+
+  <!-- ============ Divider ============ -->
+  <section id="divider-code" class="divider center">
+    <span class="number">03</span>
+    <h2>Code and closing</h2>
+  </section>
+
+  <!-- ============ Code ============ -->
+  <section id="code">
+    <h2>Example</h2>
+    <p class="subtitle">Code in a light window</p>
+    <pre class="window"><code class="language-python" data-trim data-line-numbers="1-2"><script type="text/template">
+@function_tool
+async def read_file(path: str) -> str:
+    """
+    Read a source file and return its contents as a string.
+    """
+    return Path(path).read_text()
+    </script></code></pre>
+    <p class="takeaway">Green verdict line under the code</p>
+  </section>
+
+  <!-- ============ Code, negative outcome ============ -->
+  <section id="code-danger">
+    <h2>Example</h2>
+    <p class="subtitle">A negative outcome in red</p>
+    <pre class="window"><code class="language-python" data-trim><script type="text/template">
+@function_tool
+async def delete_all(path: str) -> None:
+    shutil.rmtree(path)
+    </script></code></pre>
+    <p class="takeaway danger">Red verdict line for a negative result</p>
+  </section>
+
+  <!-- ============ Closing (green band) ============ -->
+  <section id="closing" class="band">
+    <div class="band-head">
+      <h1>Thank you for your attention</h1>
+      <p class="lead">Questions and discussion</p>
+    </div>
+    <div class="band-body">
+      <p class="authors"><span class="presenter">Presenter Name</span></p>
+      <p class="meta">name@unisg.ch · link to paper or project</p>
+      <img class="logo" src="assets/hsg-logo.svg" alt="University of St.Gallen">
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script src="../../vendor/reveal/dist/reveal.js"></script>
+<script src="../../vendor/reveal/dist/plugin/notes.js"></script>
+<script src="../../vendor/reveal/dist/plugin/highlight.js"></script>
+<script src="../../vendor/reveal/dist/plugin/zoom.js"></script>
+<script src="../../vendor/chart/chart.umd.min.js"></script>
+<script src="notes.js"></script>
+<script>
+  // ---- Data: copied from assets/, which stays the source of truth ----
+  const DATA = {
+    capabilities: [
+      { name: 'network.client', share: 83.1 },
+      { name: 'system.env.read', share: 79.6 },
+      { name: 'filesystem.read', share: 74.1 },
+      { name: 'filesystem.write', share: 49.3 },
+    ],
+  };
+
+  // ---- Chart setup: colors and fonts come from the theme's CSS variables ----
+  const token = (name) =>
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const isPrint = /print-pdf/i.test(window.location.search);
+
+  Chart.defaults.font.family = token('--font-sans');
+  Chart.defaults.font.size = 20;
+  Chart.defaults.color = token('--c-muted');
+  Chart.defaults.maintainAspectRatio = false;
+  if (isPrint) Chart.defaults.animation = false;
+
+  // One builder per <canvas data-chart="name">
+  const CHARTS = {
+    capabilities: () => ({
+      type: 'bar',
+      data: {
+        labels: DATA.capabilities.map((d) => d.name),
+        datasets: [{
+          label: 'Share of servers (%)',
+          data: DATA.capabilities.map((d) => d.share),
+          backgroundColor: token('--chart-1'),
+          maxBarThickness: 44,
+        }],
+      },
+      options: {
+        indexAxis: 'y',
+        plugins: { legend: { display: false } },
+        scales: {
+          x: {
+            beginAtZero: true,
+            max: 100,
+            grid: { color: token('--chart-grid') },
+            border: { display: false },
+            ticks: { callback: (v) => `${v}%`, maxTicksLimit: 6 },
+          },
+          y: {
+            grid: { display: false },
+            border: { color: token('--c-border') },
+            ticks: { font: { family: token('--font-mono') }, color: token('--c-text') },
+          },
+        },
+      },
+    }),
+  };
+
+  function initCharts(root) {
+    root.querySelectorAll('canvas[data-chart]').forEach((canvas) => {
+      if (Chart.getChart(canvas)) return;
+      const build = CHARTS[canvas.dataset.chart];
+      if (build) new Chart(canvas, build());
+    });
+  }
+
+  // ---- Speaker notes: text lives in notes.js, keyed by slide id ----
+  // Blank line = new paragraph; a line starting with "- " or "1. " starts a
+  // new line; other line breaks become spaces. Text is escaped, not HTML.
+  function addNotes(notes = {}) {
+    const escape = (s) =>
+      s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+    const toHtml = (text) => text.trim().split(/\n\s*\n/).map((para) => {
+      const lines = para.split('\n').map((line) => escape(line.trim()));
+      const body = lines.reduce((out, line) =>
+        out + (/^(-|\d+\.)\s/.test(line) ? '<br>' : ' ') + line);
+      return `<p>${body}</p>`;
+    }).join('\n');
+
+    Object.entries(notes).forEach(([id, text]) => {
+      const slide = document.getElementById(id);
+      if (!slide || slide.tagName !== 'SECTION') {
+        console.warn(`notes.js: no slide with id "${id}"`);
+        return;
+      }
+      if (slide.querySelector(':scope > aside.notes')) {
+        console.warn(`notes.js: slide "${id}" already has inline notes; kept those`);
+        return;
+      }
+      const aside = document.createElement('aside');
+      aside.className = 'notes';
+      aside.innerHTML = toHtml(text);
+      slide.append(aside);
+    });
+  }
+  addNotes(window.NOTES);
+
+  // ---- reveal.js ----
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    center: false,          // top-aligned; add class="center" to a section to center it
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    backgroundTransition: 'fade',
+    plugins: [RevealNotes, RevealHighlight, RevealZoom],
+  }).then(() => {
+    initCharts(isPrint ? document : Reveal.getCurrentSlide());
+  });
+
+  Reveal.on('slidechanged', (event) => initCharts(event.currentSlide));
+</script>
+</body>
+</html>

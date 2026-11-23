@@ -1,0 +1,395 @@
+/*
+ * theme.css: HSG template (University of St.Gallen), loaded after base.css.
+ *
+ * Derived from the HSG PowerPoint master used in the Swiss Informatics PhD
+ * talk (2026-01) and the FSE AgentBound talk (2026-07):
+ *   - white slides, centered title with a green subtitle underneath
+ *   - HSG logo bottom left on every content slide, slide number bottom right
+ *   - title and closing slides: green band across the top with a white title
+ *   - green table headers, light green cards, big green key figures
+ *
+ * Fonts: the PowerPoint decks use Aptos (Office). It is not open-licensed, so
+ * it is not vendored; the stack uses Aptos where installed and falls back to
+ * system sans fonts.
+ */
+
+:root {
+  /* HSG colors */
+  --c-hsg: #00802f;             /* HSG green: logo, bands, table headers, bars */
+  --c-hsg-dark: #196b24;        /* green text: subtitles, figures, labels */
+  --c-hsg-tint: #eaf1ea;        /* card fill */
+  --c-danger: #c0392b;          /* negative outcome, warnings */
+
+  --c-bg: #ffffff;
+  --c-text: #222222;
+  --c-body: #404040;            /* body text and card text */
+  --c-muted: #595959;
+  --c-accent: var(--c-hsg);
+  --c-accent-ink: #ffffff;
+  --c-surface: #f2f2f2;         /* table rows, code background */
+  --c-border: #d9d9d9;
+
+  /* Chart series, from the decks' charts (HSG green, then Office accents) */
+  --chart-1: #00802f;
+  --chart-2: #156082;
+  --chart-3: #e97132;
+  --chart-4: #0f9ed5;
+  --chart-5: #a02b93;
+  --chart-grid: #e6e6e6;
+
+  /* Type */
+  --font-sans: "Aptos", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-heading: "Aptos Display", "Aptos", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: Consolas, ui-monospace, "SF Mono", Menlo, monospace;
+  --fs-base: 26px;              /* ~20pt at the 1280x720 slide size */
+  --fw-heading: 400;            /* HSG titles are regular weight */
+
+  --gap: 32px;
+  --pad: 64px;
+  --logo-w: 241px;              /* logo size and position from the PPT master */
+  --logo-h: 50px;
+}
+
+/* ---------- Content slides ---------- */
+
+.reveal .slides > section {
+  height: 100%;
+  padding-top: 36px;
+  padding-bottom: 80px;         /* keeps content clear of the logo row */
+  color: var(--c-body);
+}
+
+/* Slides fill the full height so the logo sits at a fixed spot. reveal's own
+   centering then has no room, so class="center" centers via align-content. */
+.reveal .slides > section.center {
+  align-content: center;
+  padding-top: var(--pad);
+}
+
+/* HSG logo, bottom left, on every slide except band and divider slides */
+.reveal .slides > section::after {
+  content: "";
+  position: absolute;
+  left: 34px;
+  top: 660px;
+  width: var(--logo-w);
+  height: var(--logo-h);
+  background: url("assets/hsg-logo.svg") left center / contain no-repeat;
+  pointer-events: none;
+}
+
+.reveal .slides > section.band::after,
+.reveal .slides > section.divider::after,
+.reveal .slides > section.no-logo::after {
+  content: none;
+}
+
+/* Title: centered, large, regular weight. Subtitle: green, right below. */
+.reveal h2 {
+  margin-bottom: 0.45em;
+  font-size: 72px;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+.reveal h2:has(+ .subtitle) {
+  margin-bottom: 0;
+}
+
+.reveal .subtitle {
+  margin: 0 0 0.9em;
+  font-size: 40px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--c-hsg-dark);
+}
+
+.reveal h3 {
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.reveal li::marker { color: var(--c-hsg); }
+
+.reveal .accent { color: var(--c-hsg-dark); }
+.reveal .danger { color: var(--c-danger); }
+.reveal strong.accent,
+.reveal .accent strong { font-weight: 700; }
+
+/* Centered helper for short text blocks */
+.reveal .centered { text-align: center; }
+
+/* Narrow column for running text, centered on the slide */
+.reveal .narrow {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Bold green conclusion line under a figure: <p class="takeaway"> */
+.reveal .takeaway {
+  margin: 0.9em 0 0;
+  font-size: 0.95em;
+  font-weight: 700;
+  text-align: center;
+  color: var(--c-hsg-dark);
+}
+
+.reveal .takeaway.danger { color: var(--c-danger); }
+
+.reveal .source {
+  text-align: center;
+}
+
+/* ---------- Band slides: title and closing ---------- */
+/* <section class="band"> with a <div class="band-head"> and a <div class="band-body"> */
+
+.reveal .slides > section.band {
+  padding: 0;
+}
+
+.reveal section.band .band-head {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  padding: 0 var(--pad);
+  background: var(--c-hsg);
+  color: #ffffff;
+  text-align: center;
+}
+
+.reveal section.band h1 {
+  max-width: none;
+  margin: 0;
+  font-size: 56px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.reveal section.band .band-head .lead {
+  margin: 0.6em 0 0;
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.reveal section.band .band-body {
+  box-sizing: border-box;
+  position: relative;
+  height: 50%;
+  padding: 40px var(--pad) 0;
+  text-align: center;
+}
+
+.reveal section.band .authors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4em 1.4em;
+  margin: 0 0 0.6em;
+  font-size: 26px;
+  color: var(--c-text);
+}
+
+.reveal section.band .authors .presenter {
+  font-weight: 700;
+  color: var(--c-hsg-dark);
+}
+
+.reveal section.band .meta {
+  margin: 0;
+  font-size: 20px;
+  color: var(--c-muted);
+}
+
+/* Logo bottom right on band slides, as in the PPT title layout */
+.reveal section.band .band-body .logo {
+  position: absolute;
+  right: 64px;
+  bottom: 56px;                 /* clear of the slide number and arrows */
+  width: 300px;
+  height: auto;
+}
+
+/* ---------- Chapter divider: full green slide ---------- */
+
+.reveal .slides > section.divider {
+  background: var(--c-hsg);
+  color: #ffffff;
+  text-align: center;
+}
+
+.reveal section.divider .number {
+  font-size: 96px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.reveal section.divider h2 {
+  margin: 0.2em 0 0;
+  font-size: 72px;
+  color: #ffffff;
+}
+
+.reveal section.divider .subtitle {
+  margin-top: 0.3em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ---------- Statement ---------- */
+
+.reveal section.statement p {
+  max-width: 22em;
+  margin: 0 auto;
+  font-size: 48px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--c-text);
+}
+
+.reveal section.statement em { color: var(--c-hsg-dark); }
+.reveal section.statement .danger,
+.reveal section.statement em.danger { color: var(--c-danger); }
+
+/* ---------- Cards: light green with a green outline ---------- */
+
+.reveal .card {
+  padding: 22px 24px;
+  background: var(--c-hsg-tint);
+  border: 2px solid var(--c-hsg-dark);
+  border-radius: 8px;
+  font-size: 21px;
+  color: var(--c-body);
+}
+
+.reveal .card h3 {
+  margin-bottom: 0.4em;
+  font-size: 27px;
+}
+
+/* Step number at the top of a card: <span class="step">1</span> */
+.reveal .card .step {
+  display: block;
+  margin-bottom: 0.15em;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--c-hsg-dark);
+}
+
+/* ---------- Key figures ---------- */
+
+.reveal .stat {
+  text-align: center;
+}
+
+.reveal .stat strong {
+  font-size: 72px;
+  color: var(--c-hsg-dark);
+}
+
+.reveal .stat span {
+  font-size: 20px;
+  color: var(--c-body);
+}
+
+/* ---------- Tables: green header, grey rows ---------- */
+
+.reveal table {
+  font-size: 24px;
+  color: var(--c-text);
+}
+
+.reveal th {
+  background: var(--c-hsg);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.reveal th,
+.reveal td {
+  border-bottom: 2px solid #ffffff;
+}
+
+.reveal tbody tr:nth-child(odd) td { background: #e9e9e9; }
+.reveal tbody tr:nth-child(even) td { background: var(--c-surface); }
+.reveal tbody td:first-child { font-weight: 700; }
+.reveal td code { font-size: 0.85em; }
+
+/* ---------- Code: light window with three dots ---------- */
+
+.reveal pre.window {
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 36px;
+  position: relative;
+  background: #fafafa;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  font-size: 18px;
+}
+
+.reveal pre.window::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #d0d0d0;
+  box-shadow: 20px 0 0 #d0d0d0, 40px 0 0 #d0d0d0;
+}
+
+.reveal pre.window code {
+  max-height: 420px;
+  padding: 0.6em 1.2em 1em;
+  background: transparent;
+  color: #b4532a;
+}
+
+/* Light syntax colors (replaces a dark highlight.js theme) */
+.reveal .hljs { color: #383a42; background: transparent; }
+.reveal .hljs-keyword,
+.reveal .hljs-built_in,
+.reveal .hljs-meta { color: #a626a4; }
+.reveal .hljs-title,
+.reveal .hljs-title.function_ { color: #4078f2; }
+.reveal .hljs-string,
+.reveal .hljs-attr,
+.reveal .hljs-attribute { color: #b4532a; }
+.reveal .hljs-comment,
+.reveal .hljs-doctag { color: #a0a1a7; font-style: italic; }
+.reveal .hljs-number,
+.reveal .hljs-literal { color: #986801; }
+.reveal .hljs-tag,
+.reveal .hljs-name { color: #e45649; }
+.reveal .hljs-params { color: #383a42; }
+.reveal .hljs-ln-numbers { color: #b0b0b0; }
+.reveal .hljs.has-highlights tr:not(.highlight-line) { opacity: 0.4; }
+
+/* ---------- Diagrams ---------- */
+
+.reveal svg.diagram .node {
+  fill: #ffffff;
+  stroke: var(--c-text);
+}
+
+.reveal svg.diagram .node.is-accent {
+  fill: var(--c-hsg-tint);
+  stroke: var(--c-hsg-dark);
+}
+
+.reveal svg.diagram .node.is-accent + text { fill: var(--c-hsg-dark); }
+
+/* ---------- Reveal chrome ---------- */
+
+/* Slide number bottom right, left of the navigation arrows */
+.reveal .slide-number {
+  left: auto;
+  right: 96px;
+  bottom: 14px;
+  color: #808080;
+}
